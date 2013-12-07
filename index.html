@@ -1,0 +1,17 @@
+<html><input type='button' value='hi'>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+  var socket = io.connect('http://192.168.0.105');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+  socket.on('evented',function(data) {
+    console.log(data);
+  });
+  $('input').on('click',function() {
+	socket.emit('my other event');
+  });
+</script>
+</html>
